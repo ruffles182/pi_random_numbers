@@ -1,17 +1,11 @@
+#!/usr/bin/python3
 ##Trataremos de encontrar el valor de pi con numeros aleatorios
 #como lo explican en el video de youtube https://www.youtube.com/watch?v=RZBhSi_PwHU
-#importamos librerias necesaria
+#importamos librerias necesarias
 import math
 from random import randint
 import os
 
-clearStr = 'cls' if os.name == 'nt' else 'clear'
-
-cantidadAleatorio = int(input("defina el Maximo repeticiones: "))
-maxAleatorio = int(input("defina el max de numero aleatorio (de 0 hasta ?): "))
-cantidadMuestras = int(input("defina el numero de muestras (para el promedio): "))
-
-numeroMuchiflistico = cantidadAleatorio*cantidadMuestras
 
 def coprime2(a, b):
     return math.gcd(a, b) == 1
@@ -24,12 +18,22 @@ def generarResultados(totalCoprimos):
 
     return math.sqrt(6/x)
 
+clearStr = 'cls' if os.name == 'nt' else 'clear'
+
+os.system(clearStr)
+cantidadAleatorio = int(input("defina el Maximo repeticiones: "))
+maxAleatorio = int(input("defina el max de numero aleatorio (de 0 hasta ?): "))
+cantidadMuestras = int(input("defina el numero de muestras (para el promedio): "))
+
+numeroMuchiflistico = cantidadAleatorio*cantidadMuestras
+
+
 promedio = 0.0
 totalCalculos = 0
 sumaPromedio = 0
 for j in range(0, cantidadMuestras):
     contadorCoprimos = 0
-    for i in range(0,cantidadAleatorio):
+    for i in range(cantidadAleatorio):
         a = generarRNG()
         b = generarRNG()
 
@@ -53,7 +57,9 @@ for j in range(0, cantidadMuestras):
 print("")
 print("el valor promedio de las muestras es de: "+str(promedio))
 print("le fallamos a pi por tan solo: "+str(promedio-math.pi))
+print("Porcentaje de error: "+str(100-(100*math.pi/promedio))+"%")
 print("")
 print("---------------------------------------------------------")
 print("")
 input("Presione Enter para continuar...")
+os.system(clearStr)
